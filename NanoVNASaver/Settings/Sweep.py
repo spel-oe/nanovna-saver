@@ -33,8 +33,10 @@ class SweepMode(Enum):
 
 class Properties():
     def __init__(self, name: str = "",
-                 mode: 'SweepMode' = SweepMode.SINGLE,
-                 averages: Tuple[int, int] = (3, 0),
+                 mode: 'SweepMode' = SweepMode.CONTINOUS,
+                 #mode: 'SweepMode' = SweepMode.SINGLE,
+                 averages: Tuple[int, int] = (1, 0),
+                 #averages: Tuple[int, int] = (3, 0),
                  logarithmic: bool = False):
         self.name = name
         self.mode = mode

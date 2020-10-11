@@ -267,7 +267,7 @@ class Touchstone:
 
         logger.info("Attempting to open file %s for writing",
                     self.filename)
-        with open(self.filename, "w") as outfile:
+        with open(self.filename, "wt") as outfile:
             outfile.write(self.saves(nr_params))
 
     def saves(self, nr_params: int = 1) -> str:

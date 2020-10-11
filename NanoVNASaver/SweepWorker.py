@@ -73,6 +73,7 @@ class SweepWorker(QtCore.QRunnable):
         self.running = False
         self.error_message = ""
         self.offsetDelay = 0
+        self.updated = 0
 
     @pyqtSlot()
     def run(self):
@@ -83,8 +84,8 @@ class SweepWorker(QtCore.QRunnable):
             self.gui_error(f"ERROR during sweep\n\nStopped\n\n{exc}")
             return
             # raise exc
-
     def _run(self):
+        print("running")
         logger.info("Initializing SweepWorker")
         self.running = True
         self.percentage = 0
@@ -126,7 +127,6 @@ class SweepWorker(QtCore.QRunnable):
                     self.error_message = str(e)
                     self.stopped = True
                     self.running = False
-                    self.signals.sweepError.emit()
 
             if not sweep.properties.mode == SweepMode.CONTINOUS:
                 finished = True
@@ -140,8 +140,10 @@ class SweepWorker(QtCore.QRunnable):
 
         self.percentage = 100
         logger.debug('Sending "finished" signal')
-        self.signals.finished.emit()
+        self.finished = 1
         self.running = False
+        #kill own thread
+        return
 
     def init_data(self):
         self.data11 = []
@@ -184,8 +186,8 @@ class SweepWorker(QtCore.QRunnable):
                      len(self.data11), len(self.data21))
         self.app.saveData(self.data11, self.data21)
         logger.debug('Sending "updated" signal')
-        self.signals.updated.emit()
-
+#       self.signals.updated.emit()
+        self.updated = 1
     def applyCalibration(self,
                          raw_data11: List[Datapoint],
                          raw_data21: List[Datapoint]
@@ -237,8 +239,8 @@ class SweepWorker(QtCore.QRunnable):
             values11.append(tmp11)
             values21.append(tmp21)
             self.percentage += 100 / (self.sweep.segments * averages)
-            self.signals.updated.emit()
-
+#            self.signals.updated.emit()
+            self.updated = 1
         if not values11:
             raise IOError("Invalid data during swwep")
 
@@ -319,4 +321,4 @@ class SweepWorker(QtCore.QRunnable):
         self.error_message = message
         self.stopped = True
         self.running = False
-        self.signals.sweepError.emit()
+#        self.signals.sweepError.emit()

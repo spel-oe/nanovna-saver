@@ -59,7 +59,6 @@ class NanoVNASaver(QtWidgets.QWidget):
     version = VERSION
     dataAvailable = QtCore.pyqtSignal()
     scaleFactor = 1
-
     def __init__(self):
         super().__init__()
         self.s21att = 0.0
