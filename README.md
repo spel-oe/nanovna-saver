@@ -147,7 +147,7 @@ The downloadable executable runs directly, and requires no installation.
 
 4. Once completed run with the following command
 
-    python3.7 nanovna-saver.py
+    python3.7 nanovna-saver.py --help
 
 #### MacPorts
 
@@ -191,7 +191,7 @@ Via a MacPorts distribution maintained by @ra1nb0w.
 
 6. Run nanovna-saver in the nanovna-saver folder by:
 
-        python3 nanovna-saver.py
+        python3 nanovna-saver.py --help
 
 Using the software
 ------------------
