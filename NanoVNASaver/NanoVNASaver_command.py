@@ -21,6 +21,7 @@ import logging
 import sys
 import threading
 import time
+import os
 from datetime import datetime
 from collections import OrderedDict
 from time import sleep, strftime, localtime
@@ -118,7 +119,13 @@ class NanoVNASaver():
                 self.worker.updated = 0
                 print("updated")
                 self.dataUpdated()
-                path = self.output_path + now.strftime("%Y%m%d_%H%M%S") + ".s2p"
+                #check if subfolder exists
+                if not (os.path.isdir(self.output_path)):
+                    os.mkdir(self.output_path)
+
+                #subfolder=self.output_path.split('/')[-1]
+
+                path = self.output_path + '/' + now.strftime("%Y%m%d_%H%M%S") + ".s2p"
                 self.exportFile(4,path)
 
             #if thread_runner not running, exit
