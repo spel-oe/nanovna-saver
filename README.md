@@ -10,25 +10,33 @@ NanoVNASaver
 A multiplatform tool to save Touchstone files from the NanoVNA,
 sweep frequency spans in segments to gain more than 101 data
 points, and generally display and analyze the resulting data.
-
-- Copyright 2019, 2020 Rune B. Broberg
-- Copyright 2020 NanoVNA-Saver Authors
-
 NanoVNASaver
 
 
-arguments:
-  -h, --help            show this help message and exit
-  -d, --debug           Set loglevel to debug
-  -D DEBUG_FILE, --debug-file DEBUG_FILE
-                        File to write debug logging output to
-  --version             show program's version number and exit
-  -o OUTPUT, --output OUTPUT
-                        output location (folder)
-  -f START, --start START
-                        start frequency in Hz
-  -t STOP, --stop STOP  stop frequency in Hz
-  -i, --infinite        infinite saving 2port touchstone files, otherwise once
+arguments: 
+
+>  -h, --help            show this help message and exit  
+>  -d, --debug           Set loglevel to debug  
+>  -D DEBUG_FILE, --debug-file DEBUG_FILE  
+>                        File to write debug logging output to  
+>                      
+>  --version             show program's version number and exit  
+>  -o OUTPUT, --output OUTPUT  
+>                        output location (folder)  
+>  -f START, --start START  
+>                        start frequency in Hz  
+>  -t STOP, --stop STOP  stop frequency in Hz  
+>  -i, --infinite        infinite saving 2port touchstone files, otherwise once  
+ 
+on an empty debian there may be additional packages required, on order to install it with pip
+> libblas-dev liblapack-dev libatlas-base-dev gfortran
+  
+  
+Original NanoVNA-Saver below
+----------------------------
+
+- Copyright 2019, 2020 Rune B. Broberg
+- Copyright 2020 NanoVNA-Saver Authors  
 
 
 Latest Changes
